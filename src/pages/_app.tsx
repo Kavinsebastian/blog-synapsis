@@ -1,6 +1,5 @@
 import '@/assets/styles/globals.css'
 import type { AppProps } from 'next/app'
-import { Fragment } from 'react'
 import Header from '@/ui/layouts/header'
 import Footer from '@/ui/layouts/footer'
 
