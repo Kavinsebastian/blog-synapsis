@@ -1,0 +1,27 @@
+.variant__small {
+  @apply px-4 py-2 text-sm hover:scale-105 transition-all;
+}
+
+.variant__medium {
+  @apply px-8 py-4 text-sm hover:scale-105 transition-all;
+}
+
+.type__primary {
+  @apply bg-blue-600 text-white font-medium hover:scale-105 hover:bg-blue-600/90;
+}
+/* 
+.type__info {
+  @apply bg-blue05 text-white font-medium hover:scale-105;
+}
+
+.type__outline-primary {
+  @apply border border-primary02 text-primary02 font-medium hover:scale-105 hover:bg-primary02 hover:text-white;
+}
+
+.type__disabled {
+  @apply bg-gray02 text-black01 font-medium;
+}
+
+.type__info02 {
+  @apply bg-blue07 text-white font-medium hover:scale-105;
+} */
