@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import { PostsResponse } from '@/domain/response'
 import useHooks from './hooks'
 import TextInput from '@/ui/components/TextInput'
 import Button from '@/ui/components/Button'
@@ -8,13 +7,12 @@ import LoadingOverlay from '@/ui/components/LoadingOverlay'
 import Pagination from '@/ui/components/Pagination'
 
 interface Props {
-  posts: PostsResponse[]
+  users: any[]
   isLoading: boolean
 }
 
-const Home: FC<Props> = ({ posts, isLoading = true }) => {
-  const { state, methods } = useHooks({ posts, isLoading })
-
+const Users: FC<Props> = ({ users, isLoading = true }) => {
+  const { state, methods } = useHooks({ users, isLoading })
   return (
     <div className='flex flex-col gap-3'>
       <LoadingOverlay show={state.isFetching} />
@@ -22,7 +20,7 @@ const Home: FC<Props> = ({ posts, isLoading = true }) => {
         <div className="w-4/12">
           <TextInput
             value={state.search}
-            placeholder='Cari Berdasarkan User ID atau Title'
+            placeholder='Cari Berdasarkan User ID atau Name atau Email'
             onChange={methods.handleSearch}
             onClick={methods.onClickSearch}
           />
@@ -38,7 +36,7 @@ const Home: FC<Props> = ({ posts, isLoading = true }) => {
           </Button>
         </div>
       </div>
-      <DataTable headers={state.headersData} columns={state.postsData} />
+      <DataTable headers={state.headersData} columns={state.usersData} />
       <div className="my-10 flex justify-center">
         <Pagination
           currentPage={state.page}
@@ -50,4 +48,4 @@ const Home: FC<Props> = ({ posts, isLoading = true }) => {
   )
 }
 
-export default Home
+export default Users

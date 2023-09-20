@@ -24,10 +24,10 @@ const usePostStore = create(immer<PostState & PostActions>((set) => ({
   isLoading: false,
   page: 1,
   headersData: [
-    { label: 'user ID', type: 'col', maxWidth: "120px", minWidth: "120px" },
-    { label: 'Title', type: 'col', maxWidth: "120px", minWidth: "120px" },
-    { label: 'Body', type: 'col', maxWidth: "120px", minWidth: "120px" },
-    { label: 'Edit', type: 'button', maxWidth: "120px", minWidth: "120px" }
+    { label: 'user ID', type: 'col', maxWidth: 120, minWidth: 120 },
+    { label: 'Title', type: 'col', maxWidth: 120, minWidth: 120 },
+    { label: 'Body', type: 'col', maxWidth: 120, minWidth: 120 },
+    { label: 'Edit', type: 'button', maxWidth: 120, minWidth: 120 }
   ],
   setPage: (value) => set((state) => ({ ...state, page: value })),
   setLoading: (value) => set((state) => ({ ...state, isLoading: value })),
@@ -65,10 +65,10 @@ const mapperDataPosts = (posts: PostsResponse[]) => {
   const mapperPosts: DataTables[][] = []
   posts.forEach((item) => {
     const col: DataTables[] = [
-      { label: "User ID", value: item?.userId || '', maxWidth: "120px", minWidth: "120px" },
-      { label: "title", value: item.title, maxWidth: "120px", minWidth: "120px" },
-      { label: "body", value: item.body, maxWidth: "120px", minWidth: "120px" },
-      { label: "Detail", action: `/${item.userId}`, maxWidth: "120px", minWidth: "120px" },
+      { label: "User ID", value: item?.userId || '', maxWidth: 120, minWidth: 120 },
+      { label: "title", value: item.title, maxWidth: 120, minWidth: 120 },
+      { label: "body", value: item.body, maxWidth: 120, minWidth: 120 },
+      { label: "Detail", action: `/post/${item.id}`, maxWidth: 120, minWidth: 120 },
     ]
 
     mapperPosts.push(col)

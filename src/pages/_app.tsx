@@ -7,7 +7,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div className='min-h-screen flex flex-col'>
       <Header />
-      <div className="my-10 mx-4 h-full">
+      <div className="my-10 h-full w-10/12 mx-auto">
         <Component {...pageProps} />
       </div>
       <Footer />

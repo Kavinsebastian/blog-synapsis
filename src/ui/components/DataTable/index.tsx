@@ -10,7 +10,7 @@ interface Props {
 
 const DataTable: FC<Props> = ({ headers, columns }) => {
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div className="relative overflow-x-auto">
       <table className="text-sm text-left text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
@@ -18,14 +18,26 @@ const DataTable: FC<Props> = ({ headers, columns }) => {
               headers.length > 0 && headers.map((item, index) => {
                 if (item.type === 'button') {
                   return (
-                    <th key={`${item.label}-${index}`} scope="col" className={cx("px-6 py-3", `!max-w-[${item.maxWidth}]`, `!min-w-[${item.minWidth}]`)} style={{ minWidth: `${item.minWidth} !important`, maxWidth: `${item.maxWidth} !important` }}>
+                    <th key={`${item.label}-${index}`} scope="col" className={cx("px-6 py-3", `custom-width-header-${index}`, index === headers.length - 1 || index === 0 ? "rounded-tr-lg" : "")}>
                       <span className="sr-only">{item.label}</span>
+                      <style jsx>{
+                        `.custom-width-header-${index} {
+                          max-width: ${item.maxWidth}px;
+                          min-width: ${item.minWidth}px;
+                      }`}
+                      </style>
                     </th>
                   )
                 }
                 return (
-                  <th key={`${item.label}-${index}`} scope="col" className={cx("px-6 py-3", `!max-w-[${item.maxWidth}]`, `!min-w-[${item.minWidth}]`)} style={{ minWidth: `${item.minWidth} !important`, maxWidth: `${item.maxWidth} !important` }}>
+                  <th key={`${item.label}-${index}`} scope="col" className={cx("px-6 py-3", `custom-width-header-${index}`, index === headers.length - 1 || index === 0 ? "rounded-tl-lg" : "")}>
                     {item.label}
+                    <style jsx>{
+                      `.custom-width-header-${index} {
+                          max-width: ${item.maxWidth}px;
+                          min-width: ${item.minWidth}px;
+                      }`}
+                    </style>
                   </th>
                 )
               })
@@ -41,13 +53,13 @@ const DataTable: FC<Props> = ({ headers, columns }) => {
                     column.length > 0 && column.map((col, idx) => {
                       if (col.action && !col.value) {
                         return (
-                          <td key={`${col.label}-${idx}`} className={cx("px-6 py-4 text-right", `!max-w-[${col.maxWidth}]`, `!min-w-[${col.minWidth}]`)} style={{ minWidth: `${col.minWidth} !important`, maxWidth: `${col.maxWidth} !important` }}>
+                          <td key={`${col.label}-${idx}`} className={cx("px-6 py-4 text-right")}>
                             <Link href={col.action} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">{col.label}</Link>
                           </td>
                         )
                       }
                       return (
-                        <td key={`${col.label}-${idx}`} scope="row" className={cx("px-6 py-4 font-medium text-gray-900 dark:text-white", `!max-w-[${col.maxWidth}]`, `!min-w-[${col.minWidth}]`)} style={{ minWidth: `${col.minWidth} !important`, maxWidth: `${col.maxWidth} !important` }}>
+                        <td key={`${col.label}-${idx}`} scope="row" className={cx("px-6 py-4 font-medium text-gray-900 dark:text-white")}>
                           <p className='text-ellipsis break-words'>{col.value}</p>
                         </td>
                       )
@@ -59,7 +71,7 @@ const DataTable: FC<Props> = ({ headers, columns }) => {
             )}
         </tbody>
       </table>
-    </div>
+    </div >
 
   )
 }

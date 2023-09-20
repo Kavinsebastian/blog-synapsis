@@ -3,4 +3,7 @@ export interface BaseParams {
   per_page?: number
   title?: string
   user_id?: number
+  email?: string
+  name?: string
+  id?: number
 }

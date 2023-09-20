@@ -1,24 +1,37 @@
 import React from 'react'
 import useHooks from './hooks'
 import cx from 'classnames'
+import Link from 'next/link'
 
 export default function Header() {
   const { state, methods } = useHooks()
   return (
     <nav className="bg-white border-gray-200 shadow-sm">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="#" className="flex items-center">
+        <Link href={'/'} className="flex items-center">
           <span className="self-center text-2xl font-semibold whitespace-nowrap">THE BLOG.</span>
-        </a>
+        </Link>
 
         <div className="hidden  md:flex md:justify-between">
           <div className="hidden md:block md:w-auto" id="navbar-default">
             <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white  md ">
               <li>
-                <a href="#" className="block py-2 pl-3 pr-4 rounded md:bg-transparent text-black-base md:p-0 " aria-current="page">Login</a>
+                <Link href="/" className={cx("block py-2 pl-3 pr-4 rounded md:bg-transparent md:hover:text-blue-700 md:p-0", state.router.asPath === '/' ? "text-blue-700" : "text-black-base")} aria-current="page">Posts</Link>
               </li>
               <li>
-                <a href="#" className="block py-2 pl-3 pr-4 text-black-base rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">Register</a>
+                <Link href="/users" className={cx("block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0", state.router.asPath === '/users' ? "text-blue-700" : "text-black-base")}>Users</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="hidden  md:flex md:justify-between">
+          <div className="hidden md:block md:w-auto" id="navbar-default">
+            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white  md ">
+              <li>
+                <Link href="#" className={cx("block py-2 pl-3 pr-4 rounded md:bg-transparent md:hover:text-blue-700 md:p-0", state.router.asPath === '/login' ? "text-blue-700" : "text-black-base")} aria-current="page">Login</Link>
+              </li>
+              <li>
+                <Link href="#" className={cx("block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0", state.router.asPath === '/register' ? "text-blue-700" : "text-black-base")}>Register</Link>
               </li>
             </ul>
           </div>
@@ -40,7 +53,7 @@ export default function Header() {
               <h1 className='font-bold text-xl'>MENU.</h1>
               <ul>
                 <li>
-                  <a href="#" className="block py-2 pl-3 pr-4 rounded md:bg-transparent text-black-base md:p-0 " aria-current="page">Home</a>
+                  <Link href="#" className="block py-2 pl-3 pr-4 rounded md:bg-transparent text-black-base md:p-0 " aria-current="page">Home</Link>
                 </li>
                 <li>
                   <a href="#" className="block py-2 pl-3 pr-4 rounded md:bg-transparent text-black-base md:p-0 " aria-current="page">Articles</a>
@@ -50,10 +63,10 @@ export default function Header() {
             <div>
               <ul>
                 <li>
-                  <a href="#" className="block py-2 pl-3 pr-4 rounded md:bg-transparent text-black-base md:p-0 " aria-current="page">Login</a>
+                  <Link href="#" className="block py-2 pl-3 pr-4 rounded md:bg-transparent text-black-base md:p-0 " aria-current="page">Login</Link>
                 </li>
                 <li>
-                  <a href="#" className="block py-2 pl-3 pr-4 rounded md:bg-transparent text-black-base md:p-0 " aria-current="page">Register</a>
+                  <Link href="#" className="block py-2 pl-3 pr-4 rounded md:bg-transparent text-black-base md:p-0 " aria-current="page">Register</Link>
                 </li>
               </ul>
             </div>
@@ -61,5 +74,5 @@ export default function Header() {
         </div>
       </div>
     </nav>
-  )
+  );
 }

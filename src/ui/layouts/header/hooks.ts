@@ -1,3 +1,4 @@
+import { useRouter } from "next/router"
 import { useCallback, useState } from "react"
 
 interface States {
@@ -5,6 +6,7 @@ interface States {
 }
 
 const useHooks = () => {
+  const router = useRouter()
   const [state, setState] = useState<States>({
     isOpen: false
   })
@@ -13,8 +15,12 @@ const useHooks = () => {
     setState((prev) => ({ ...prev, isOpen: !state.isOpen }))
   }, [state.isOpen])
 
+
   return {
-    state,
+    state: {
+      ...state,
+      router
+    },
     methods: {
       handleClick
     }
