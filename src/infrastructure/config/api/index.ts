@@ -31,7 +31,7 @@ axios.interceptors.response.use(
 export const invoke = async (
   method: Method,
   url: string,
-  params?: string,
+  params?: any,
   payload?: any,
   headers?: AxiosHeaders
 ) => {

@@ -1,12 +1,11 @@
 import { PostsResponse } from "@/domain/response";
-import { getPosts } from "@/services/post";
-import usePostStore from "@/stores/post";
 import Home from "@/ui/screens/Home";
 import { AxiosError } from "axios";
 import { GetServerSideProps, NextPage } from "next";
+import { getPostsApiService } from "@/infrastructure/services/post";
 
 interface Props {
-  posts?: PostsResponse[],
+  posts: PostsResponse[],
   isLoading: boolean
 }
 
@@ -16,14 +15,14 @@ const Root: NextPage<Props> = ({ posts, isLoading }) => {
   )
 }
 
-
 export const getServerSideProps: GetServerSideProps = async () => {
-  let result;
+  let result: PostsResponse[] = [];
   let isLoading = true
   try {
-    const response = await getPosts()
+    const response = await getPostsApiService()
+    if (!response) throw Error
+
     result = response
-    usePostStore.getState().setPosts(response)
   } catch (error: unknown) {
     if (error instanceof AxiosError)
       console.log('err', error.response?.status)

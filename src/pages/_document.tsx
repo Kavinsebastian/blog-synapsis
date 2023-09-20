@@ -5,6 +5,8 @@ export default function Document() {
     <Html lang="en" className='relative h-full overflow-x-hidden'>
       <Head />
       <body>
+        <div id="portal-container" />
+        <div id="portal-backdrop" />
         <Main />
         <NextScript />
       </body>

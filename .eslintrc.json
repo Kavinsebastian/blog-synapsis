@@ -11,10 +11,6 @@
   ],
   "rules": {
     "camelcase": "off",
-    "complexity": [
-      "warn",
-      1
-    ],
     "consistent-return": "warn",
     "eqeqeq": [
       "warn",

@@ -1,9 +1,24 @@
-import React from 'react'
+import React, { ChangeEventHandler, FC, Fragment } from 'react'
 import Button from '../Button'
 
-export default function TextInput() {
+interface Props {
+  value: string
+  placeholder?: string
+}
+
+interface Actions {
+  onChange: ChangeEventHandler<HTMLInputElement>
+  onClick: () => void
+}
+
+const TextInput: FC<Props & Actions> = ({
+  value,
+  placeholder = '',
+  onChange,
+  onClick
+}) => {
   return (
-    <div>
+    <Fragment>
       <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
       <div className="relative">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -11,9 +26,9 @@ export default function TextInput() {
             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
           </svg>
         </div>
-        <input type="search" id="default-search" className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none" placeholder="Search Mockups, Logos..." required />
+        <input onChange={onChange} value={value} type="search" id="default-search" className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none" placeholder={placeholder} />
         <Button
-          onClick={() => { }}
+          onClick={onClick}
           type='primary'
           variant='small'
           customClassName='text-white absolute right-2.5 bottom-2.5'
@@ -21,6 +36,8 @@ export default function TextInput() {
           Search
         </Button>
       </div>
-    </div>
+    </Fragment>
   )
 }
+
+export default TextInput
