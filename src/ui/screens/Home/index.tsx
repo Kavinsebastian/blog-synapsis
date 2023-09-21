@@ -23,6 +23,7 @@ const Home: FC<Props> = ({ posts, isLoading = true }) => {
           <TextInput
             value={state.search}
             placeholder='Cari Berdasarkan User ID atau Title'
+            customClass='p-4 pl-10'
             onChange={methods.handleSearch}
             onClick={methods.onClickSearch}
           />

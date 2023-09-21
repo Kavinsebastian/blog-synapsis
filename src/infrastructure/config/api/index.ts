@@ -36,7 +36,7 @@ export const invoke = async (
   headers?: AxiosHeaders
 ) => {
   // TODO
-  axios.defaults.headers.common.Authorization = `Bearer `;
+  axios.defaults.headers.common.Authorization = `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`;
 
   return axios
     .request({

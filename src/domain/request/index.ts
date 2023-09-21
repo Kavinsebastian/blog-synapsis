@@ -7,3 +7,10 @@ export interface BaseParams {
   name?: string
   id?: number
 }
+
+export interface CreateUserRequest {
+  name: string
+  email: string
+  status: string
+  gender: string
+}

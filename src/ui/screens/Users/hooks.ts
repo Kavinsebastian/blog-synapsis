@@ -1,5 +1,7 @@
 import { UserResponse } from "@/domain/response"
+import { useNotify } from "@/ui/context"
 import useUsersStore from "@/ui/stores/user"
+import { useRouter } from "next/router"
 import { SyntheticEvent, useCallback, useEffect, useState } from "react"
 
 interface Props {
@@ -13,6 +15,8 @@ interface State {
 }
 
 const useHooks = ({ users, isLoading }: Props) => {
+  const router = useRouter()
+  const notify = useNotify()
   const [
     headersData,
     page,
@@ -21,7 +25,8 @@ const useHooks = ({ users, isLoading }: Props) => {
     setUsers,
     setLoading,
     setPage,
-    getUsers
+    getUsers,
+    deleteUser
   ] = useUsersStore((state) => [
     state.headersData,
     state.page,
@@ -30,7 +35,8 @@ const useHooks = ({ users, isLoading }: Props) => {
     state.setUsers,
     state.setLoading,
     state.setPage,
-    state.getUsers
+    state.getUsers,
+    state.deleteUser
   ])
 
   const [state, setState] = useState<State>({
@@ -58,6 +64,19 @@ const useHooks = ({ users, isLoading }: Props) => {
     getUsers(1, state.perPage, state.search)
   }, [getUsers, setLoading, setPage, state.perPage, state.search])
 
+  const onClickDelete = useCallback(async (label: string, id?: number) => {
+    if (!id || label !== 'Delete') return;
+    setLoading(true)
+    const response = await deleteUser(id)
+    if (response) {
+      getUsers(1, state.perPage, state.search)
+      notify?.open({ message: "successfully", type: "success" })
+      return;
+    }
+
+    notify?.open({ message: "Failed to fetch", type: "success" })
+  }, [deleteUser, getUsers, notify, setLoading, state.perPage, state.search])
+
 
   useEffect(() => {
     setLoading(isLoading)
@@ -70,12 +89,14 @@ const useHooks = ({ users, isLoading }: Props) => {
       headersData,
       page,
       usersData,
-      isFetching
+      isFetching,
+      router
     },
     methods: {
       counterPage,
       onClickSearch,
-      handleSearch
+      handleSearch,
+      onClickDelete
     }
   }
 }

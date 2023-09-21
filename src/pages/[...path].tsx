@@ -7,15 +7,25 @@ import { getPostApiService, getCommentPostApiService } from "@/infrastructure/se
 import { AxiosError } from "axios";
 import { getUserApiService } from "@/infrastructure/services/user";
 import { PostDataDetail } from "@/infrastructure/types";
+import User from '@/ui/screens/Users/User'
+import { UserResponse } from "@/domain/response";
+import UserEdit from '@/ui/screens/Users/UserEdit'
+import UserCreate from "@/ui/screens/Users/UserCreate";
 
 interface Props {
   postId?: number
   postData?: PostDataDetail
+  userData?: UserResponse
+  isUserEdit?: boolean
+  isUserCreate?: boolean
 }
 
 const DynamicPage: NextPage<Props> = ({
   postId,
-  postData
+  postData,
+  userData,
+  isUserEdit,
+  isUserCreate
 }) => {
 
   if (postId) {
@@ -25,6 +35,39 @@ const DynamicPage: NextPage<Props> = ({
           <title>Post | THE BLOG.</title>
         </Head>
         <Post id={postId} data={postData} />
+      </Fragment>
+    )
+  }
+
+  if (userData && !isUserEdit) {
+    return (
+      <Fragment>
+        <Head>
+          <title>User | THE BLOG.</title>
+        </Head>
+        <User user={userData} />
+      </Fragment>
+    )
+  }
+
+  if (isUserEdit && userData) {
+    return (
+      <Fragment>
+        <Head>
+          <title>User | THE BLOG.</title>
+        </Head>
+        <UserEdit user={userData} />
+      </Fragment>
+    )
+  }
+
+  if (isUserCreate) {
+    return (
+      <Fragment>
+        <Head>
+          <title>User | THE BLOG.</title>
+        </Head>
+        <UserCreate />
       </Fragment>
     )
   }
@@ -55,7 +98,7 @@ export const getServerSideProps: GetServerSideProps = async (props) => {
 
     } catch (error) {
       if (error instanceof AxiosError) {
-        console.log('err', error)
+        console.log('DEBUG ERROR: ', error)
       }
     }
 
@@ -78,8 +121,55 @@ export const getServerSideProps: GetServerSideProps = async (props) => {
     }
   }
 
+  if (paths[0] === 'users' && paths[1] === 'create') {
+    return {
+      props: {
+        isUserCreate: true
+      }
+    }
+  }
+
+  if (paths[0] === 'users' && !isNaN(Number(paths[1])) && paths.length === 2) {
+    let user;
+    try {
+      user = await getUserApiService(Number(paths[1]))
+
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        console.log('DEBUG ERROR: ', error)
+      }
+    }
+
+    return {
+      props: {
+        userData: user
+      }
+    }
+  }
+
+  if (paths[0] === 'users' && paths.length === 3 && paths[2] === 'update') {
+    let user;
+    try {
+      user = await getUserApiService(Number(paths[1]))
+
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        console.log('DEBUG ERROR: ', error)
+      }
+    }
+
+    return {
+      props: {
+        userData: user,
+        isUserEdit: true
+      }
+    }
+  }
+
   return {
-    props: {}
+    props: {
+
+    }
   }
 }
 

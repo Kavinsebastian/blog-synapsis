@@ -48,7 +48,7 @@ const usePostStore = create(immer<PostState & PostActions>((set) => ({
       result = response
     } catch (error: unknown) {
       if (error instanceof AxiosError)
-        console.log('err', error.response?.status)
+        console.log('DEBUG ERROR: ', error.response?.status)
     }
     return set((state) => {
       const mapperData = mapperDataPosts(result)

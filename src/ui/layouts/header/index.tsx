@@ -16,10 +16,10 @@ export default function Header() {
           <div className="hidden md:block md:w-auto" id="navbar-default">
             <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white  md ">
               <li>
-                <Link href="/" className={cx("block py-2 pl-3 pr-4 rounded md:bg-transparent md:hover:text-blue-700 md:p-0", state.router.asPath === '/' ? "text-blue-700" : "text-black-base")} aria-current="page">Posts</Link>
+                <Link href="/" className={cx("block py-2 pl-3 pr-4 rounded md:bg-transparent md:hover:text-blue-700 md:p-0", state.router.asPath === '/' || state.router.asPath.includes('post') ? "text-blue-700" : "text-black-base")} aria-current="page">Posts</Link>
               </li>
               <li>
-                <Link href="/users" className={cx("block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0", state.router.asPath === '/users' ? "text-blue-700" : "text-black-base")}>Users</Link>
+                <Link href="/users" className={cx("block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0", state.router.asPath.includes('users') ? "text-blue-700" : "text-black-base")}>Users</Link>
               </li>
             </ul>
           </div>

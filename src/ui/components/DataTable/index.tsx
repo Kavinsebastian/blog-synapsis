@@ -1,14 +1,17 @@
 import Link from 'next/link'
-import React, { FC, useEffect } from 'react'
+import React, { FC } from 'react'
 import { DataTables } from '@/infrastructure/types'
 import cx from 'classnames'
+import useHooks from './hooks'
 
 interface Props {
   headers: DataTables[]
   columns: DataTables[][]
+  onClick?: (label: string, id?: number) => void
 }
 
-const DataTable: FC<Props> = ({ headers, columns }) => {
+const DataTable: FC<Props> = ({ headers, columns, onClick }) => {
+  const { methods } = useHooks({ onClick })
   return (
     <div className="relative overflow-x-auto">
       <table className="text-sm text-left text-gray-500 dark:text-gray-400">
@@ -54,7 +57,14 @@ const DataTable: FC<Props> = ({ headers, columns }) => {
                       if (col.action && !col.value) {
                         return (
                           <td key={`${col.label}-${idx}`} className={cx("px-6 py-4 text-right")}>
-                            <Link href={col.action} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">{col.label}</Link>
+                            <Link
+                              href={col.action === '#' ? '' : col.action}
+                              onClick={() => { methods.handleClick(col.label, col.id, Boolean(col.action === '#')) }}
+                              className={cx(
+                                "font-medium text-blue-600 dark:text-blue-500 hover:underline",
+                                col.customClass
+                              )}
+                            >{col.label}</Link>
                           </td>
                         )
                       }

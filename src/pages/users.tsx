@@ -27,7 +27,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     result = response
   } catch (error: unknown) {
     if (error instanceof AxiosError)
-      console.log('err', error.response?.status)
+      console.log('DEBUG ERROR: ', error.response?.status)
   } finally {
     isLoading = false
   }

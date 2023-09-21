@@ -21,13 +21,14 @@ const Users: FC<Props> = ({ users, isLoading = true }) => {
           <TextInput
             value={state.search}
             placeholder='Cari Berdasarkan User ID atau Name atau Email'
+            customClass='p-4 pl-10'
             onChange={methods.handleSearch}
             onClick={methods.onClickSearch}
           />
         </div>
         <div className="w-3/12">
           <Button
-            onClick={() => { }}
+            onClick={() => { state.router.push(state.router.asPath + '/create') }}
             type='primary'
             variant='medium'
             customClassName='w-full'
@@ -36,7 +37,7 @@ const Users: FC<Props> = ({ users, isLoading = true }) => {
           </Button>
         </div>
       </div>
-      <DataTable headers={state.headersData} columns={state.usersData} />
+      <DataTable headers={state.headersData} columns={state.usersData} onClick={methods.onClickDelete} />
       <div className="my-10 flex justify-center">
         <Pagination
           currentPage={state.page}
