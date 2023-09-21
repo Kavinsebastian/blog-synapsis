@@ -16,8 +16,8 @@ const Users: FC<Props> = ({ users, isLoading = true }) => {
   return (
     <div className='flex flex-col gap-3'>
       <LoadingOverlay show={state.isFetching} />
-      <div className="flex justify-between">
-        <div className="w-4/12">
+      <div className="flex justify-between flex-col md:flex-row gap-3">
+        <div className="w-full md:w-4/12">
           <TextInput
             value={state.search}
             placeholder='Cari Berdasarkan User ID atau Name atau Email'
@@ -26,7 +26,7 @@ const Users: FC<Props> = ({ users, isLoading = true }) => {
             onClick={methods.onClickSearch}
           />
         </div>
-        <div className="w-3/12">
+        <div className="w-full md:w-3/12">
           <Button
             onClick={() => { state.router.push(state.router.asPath + '/create') }}
             type='primary'

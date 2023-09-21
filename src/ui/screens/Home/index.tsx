@@ -18,8 +18,8 @@ const Home: FC<Props> = ({ posts, isLoading = true }) => {
   return (
     <div className='flex flex-col gap-3'>
       <LoadingOverlay show={state.isFetching} />
-      <div className="flex justify-between">
-        <div className="w-4/12">
+      <div className="flex justify-between flex-col gap-3 md:flex-row">
+        <div className="w-full md:w-4/12">
           <TextInput
             value={state.search}
             placeholder='Cari Berdasarkan User ID atau Title'
@@ -28,7 +28,7 @@ const Home: FC<Props> = ({ posts, isLoading = true }) => {
             onClick={methods.onClickSearch}
           />
         </div>
-        <div className="w-3/12">
+        <div className="w-full md:w-3/12">
           <Button
             onClick={() => { }}
             type='primary'

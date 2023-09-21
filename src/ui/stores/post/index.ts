@@ -25,8 +25,8 @@ const usePostStore = create(immer<PostState & PostActions>((set) => ({
   page: 1,
   headersData: [
     { label: 'user ID', type: 'col', maxWidth: 120, minWidth: 120 },
-    { label: 'Title', type: 'col', maxWidth: 120, minWidth: 120 },
-    { label: 'Body', type: 'col', maxWidth: 120, minWidth: 120 },
+    { label: 'Title', type: 'col', maxWidth: 220, minWidth: 220 },
+    { label: 'Body', type: 'col', maxWidth: 360, minWidth: 360 },
     { label: 'Edit', type: 'button', maxWidth: 120, minWidth: 120 }
   ],
   setPage: (value) => set((state) => ({ ...state, page: value })),
@@ -66,8 +66,8 @@ const mapperDataPosts = (posts: PostsResponse[]) => {
   posts.forEach((item) => {
     const col: DataTables[] = [
       { label: "User ID", value: item?.userId || '', maxWidth: 120, minWidth: 120 },
-      { label: "title", value: item.title, maxWidth: 120, minWidth: 120 },
-      { label: "body", value: item.body, maxWidth: 120, minWidth: 120 },
+      { label: "title", value: item.title, maxWidth: 220, minWidth: 220 },
+      { label: "body", value: item.body, maxWidth: 360, minWidth: 360 },
       { label: "Detail", action: `/post/${item.id}`, maxWidth: 120, minWidth: 120 },
     ]
 
