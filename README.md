@@ -1,8 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This project is a Skill Test from [Synapsis.id](https://synapsis.id/)
+
+this project build with:
+
+- Typescript
+- NEXT
+- Zustand
+- Tailwind
 
 ## Getting Started
 
-First, run the development server:
+##### install packages
+
+```bash
+npm install
+#or
+yarn install
+#or
+pnpm install
+```
+
+##### run the development server:
 
 ```bash
 npm run dev
@@ -12,23 +29,111 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+##### run the linter:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run lint
+# or
+yarn lint
+# or
+pnpm lint
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Project Folder Structure
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+project-root/
+|
+├── public/
+├── src/
+| ├── domain/
+| | ├── request/
+| | | ├── authRequest.ts
+| | | └── ...
+| | |
+| | └── response/
+| | ├── authResponse.ts
+| | └── ...
+| |
+| ├── infrastructure/
+| | ├── config/
+| | | ├── api/
+| | | | └── index.ts
+| | | └── ...
+| | |
+| | ├── constant/
+| | | └── index.ts
+| | |
+| | ├── enum/
+| | | └── index.ts
+| | |
+| | ├── services/
+| | | ├── auth/
+| | | | └── index.ts
+| | | └── ...
+| | |
+| | ├── types/
+| | | └── index.ts
+| | |
+| | └── utils/
+| | └── index.ts
+| |
+| ├── pages/
+| | ├── _app.tsx
+| | ├── _document.tsx
+| | └── ...
+| |
+| └── ui/
+| ├── assets/
+| | ├── images/
+| | | ├── png/
+| | | | ├── example.png
+| | | | └── ...
+| | | ├── svg/
+| | | | ├── example.svg
+| | | | └── ...
+| | | └── ...
+| | |
+| | └── styles/
+| | └── global.css
+| |
+| ├── components/
+| | ├── Button/
+| | | └── index.ts
+| | |
+| | ├── Dropdown/
+| | | └── index.ts
+| | └── ...
+| |
+| ├── context/
+| | ├── Notify/
+| | | └── NotifyProvider.ts
+| | ├── ...
+| | └── index.ts
+| |
+| ├── layouts/
+| | ├── Header/
+| | | ├── hooks.ts
+| | | └── index.tsx
+| | |
+| | └── Footer/
+| | ├── hooks.ts
+| | └── index.tsx
+| |
+| ├── screens/
+| | ├── Home/
+| | | ├── hooks.ts
+| | | └── index.tsx
+| | └── ...
+| |
+| └── stores/
+| ├── auth/
+| | ├── index.ts
+| └─ ...
+|
+|
+├── package.json
+├── README.md
+├── .env
+└─ ...
+```
