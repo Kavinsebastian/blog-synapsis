@@ -1,3 +1,4 @@
+import { BaseParams } from '@/domain/request';
 import Axios, { Method, AxiosHeaders } from 'axios'
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
@@ -31,8 +32,8 @@ axios.interceptors.response.use(
 export const invoke = async (
   method: Method,
   url: string,
-  params?: any,
-  payload?: any,
+  params?: BaseParams | null,
+  payload?: Record<string, string> | null,
   headers?: AxiosHeaders
 ) => {
   // TODO
@@ -41,10 +42,10 @@ export const invoke = async (
   return axios
     .request({
       url,
-      params: params ? params : null,
-      data: payload ? payload : null,
-      method: method ? method : "GET",
-      headers: headers ? headers : { "Content-Type": "application/json" },
+      params: params ?? null,
+      data: payload ?? null,
+      method: method ?? "GET",
+      headers: headers ?? { "Content-Type": "application/json" },
     })
     .catch();
 }

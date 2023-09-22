@@ -15,19 +15,19 @@ const User: FC<Props> = ({ user }) => {
       <div className='border p-4 grid grid-cols-6 text-black-base gap-y-4'>
         <p>Name </p>
         <p>:</p>
-        <p className='col-span-4'>{user.name}</p>
+        <p className='col-span-4 break-words'>{user.name}</p>
 
         <p>Email </p>
         <p>: </p>
-        <p className='col-span-4'>{user.email}</p>
+        <p className='col-span-4 break-words'>{user.email}</p>
 
         <p>Gender </p>
         <p>: </p>
-        <p className='col-span-4'>{user.gender}</p>
+        <p className='col-span-4 break-words'>{user.gender}</p>
 
         <p>Status </p>
         <p>: </p>
-        <p className='col-span-4'>{user.status}</p>
+        <p className='col-span-4 break-words'>{user.status}</p>
       </div>
       <Button
         onClick={() => { router.push(router.asPath + '/update') }}

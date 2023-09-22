@@ -3,7 +3,6 @@ import { UserResponse } from "@/domain/response"
 import { invoke } from "@/infrastructure/config/api"
 import { API_SERVICES, API_VERSION } from "@/infrastructure/constants"
 import { toMapCamelCase, toMapSnakeCase } from "@/infrastructure/utils"
-import { AxiosResponse } from "axios"
 
 export const getUserApiService = async (id: number): Promise<UserResponse> => {
   const response = await invoke("GET", `${API_VERSION.V2}${API_SERVICES.USERS}/${id}`)

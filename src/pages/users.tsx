@@ -1,18 +1,24 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Users from '@/ui/screens/Users'
 import { GetServerSideProps, NextPage } from 'next'
 import { getUsersApiService } from '@/infrastructure/services/user'
 import { AxiosError } from 'axios'
 import { UserResponse } from '@/domain/response'
+import Head from 'next/head'
 
 interface Props {
-  users: any
+  users: UserResponse[]
   isLoading: boolean
 }
 
 const UsersPage: NextPage<Props> = ({ users, isLoading }) => {
   return (
-    <Users users={users} isLoading={isLoading} />
+    <Fragment>
+      <Head>
+        <title>User | THE BLOG.</title>
+      </Head>
+      <Users users={users} isLoading={isLoading} />
+    </Fragment>
   )
 }
 

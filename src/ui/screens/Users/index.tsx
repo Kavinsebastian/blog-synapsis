@@ -5,9 +5,10 @@ import Button from '@/ui/components/Button'
 import DataTable from '@/ui/components/DataTable'
 import LoadingOverlay from '@/ui/components/LoadingOverlay'
 import Pagination from '@/ui/components/Pagination'
+import { UserResponse } from '@/domain/response'
 
 interface Props {
-  users: any[]
+  users: UserResponse[]
   isLoading: boolean
 }
 
